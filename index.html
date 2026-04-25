@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VelocityOne FS2024 Configurator | Kveila Apps</title>
+  <meta name="description" content="A visual browser-based configurator for the Turtle Beach VelocityOne Flight yoke and quadrant in Microsoft Flight Simulator 2024 on PC.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07121d;
+      --bg-soft: #0d1c2a;
+      --panel: #102335;
+      --panel-soft: #142b40;
+      --text: #f6fbff;
+      --muted: #b9c9d7;
+      --line: rgba(255, 255, 255, .14);
+      --accent: #52b6ff;
+      --accent-2: #b8e4ff;
+      --button: #1d77b6;
+      --button-hover: #258ad2;
+      --warning: #ffd89a;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 72% 8%, rgba(55, 137, 190, .22), transparent 32rem),
+        linear-gradient(140deg, #03080d 0%, var(--bg) 40%, #0d2234 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--accent-2);
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 50% 50%, transparent 28%, #d8b077 29% 38%, transparent 39%),
+        radial-gradient(circle at 50% 50%, transparent 44%, #d8b077 45% 54%, transparent 55%),
+        linear-gradient(135deg, #123a56, #07121d);
+      border: 1px solid rgba(255, 255, 255, .18);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, .9fr);
+      gap: 44px;
+      align-items: center;
+      padding: 72px 0 64px;
+    }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 700;
+      margin: 0 0 16px;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 20px;
+      max-width: 680px;
+      margin: 24px 0 0;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border-radius: 8px;
+      padding: 0 18px;
+      background: var(--button);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    .button:hover {
+      background: var(--button-hover);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, .08);
+      color: var(--text);
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 34px;
+      max-width: 680px;
+    }
+
+    .meta div {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(255, 255, 255, .045);
+    }
+
+    .meta strong {
+      display: block;
+      font-size: 13px;
+      color: var(--accent-2);
+      margin-bottom: 4px;
+    }
+
+    .meta span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .055);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, .34);
+    }
+
+    .hero-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    section {
+      padding: 54px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .055);
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 9px;
+      font-size: 19px;
+    }
+
+    .card p,
+    .policy p,
+    .policy li {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .policy {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .policy-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .policy-box h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .notice {
+      border-left: 4px solid var(--warning);
+      background: rgba(255, 216, 154, .08);
+      padding: 18px 20px;
+      border-radius: 8px;
+      color: #ffe5bd;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .policy {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .grid,
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Kveila Apps</span>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#policies">Policies</a>
+        <a href="mailto:vidarthomassen3@gmail.com">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell hero">
+      <div>
+        <p class="eyebrow">Microsoft Flight Simulator 2024 for PC</p>
+        <h1>VelocityOne FS2024 Configurator</h1>
+        <p class="lead">A visual browser-based configurator for the Turtle Beach VelocityOne Flight yoke and quadrant. Build bindings, save profiles, export XML files, and generate a PDF reference sheet without hand-editing controller profiles.</p>
+        <div class="cta-row">
+          <a class="button" href="https://youtu.be/AhATw7G7BIc">Watch demo video</a>
+          <a class="button secondary" href="mailto:vidarthomassen3@gmail.com?subject=VelocityOne%20FS2024%20Configurator">Contact support</a>
+        </div>
+        <div class="meta" aria-label="Compatibility summary">
+          <div>
+            <strong>Hardware</strong>
+            <span>Turtle Beach VelocityOne Flight yoke + quadrant</span>
+          </div>
+          <div>
+            <strong>Simulator</strong>
+            <span>Microsoft Flight Simulator 2024 for PC</span>
+          </div>
+          <div>
+            <strong>Tested</strong>
+            <span>Windows 11, macOS 26, MSFS 2024 SU4 / 1.6.32.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/velocityone-cover.png" alt="VelocityOne FS2024 Configurator product preview">
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="shell">
+        <h2>What It Does</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Visual Binding Workflow</h3>
+            <p>Click directly on the yoke or quadrant diagram instead of guessing where a control lives.</p>
+          </article>
+          <article class="card">
+            <h3>Profiles and Presets</h3>
+            <p>Create presets, save your current setup as a JSON profile, and load it again later.</p>
+          </article>
+          <article class="card">
+            <h3>FS2024 XML Export</h3>
+            <p>Export the four XML files Flight Simulator needs for yoke/quadrant general and airplane controls.</p>
+          </article>
+          <article class="card">
+            <h3>Conflict Awareness</h3>
+            <p>Surface duplicate action assignments before export so problems are easier to catch.</p>
+          </article>
+          <article class="card">
+            <h3>Focused Views</h3>
+            <p>Filter the setup between General bindings, Airplane bindings, or both.</p>
+          </article>
+          <article class="card">
+            <h3>PDF Reference Sheet</h3>
+            <p>Generate a printable reference sheet for quick lookup outside the configurator.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="policies">
+      <div class="shell">
+        <h2>Purchase and Support Information</h2>
+        <div class="policy">
+          <div class="policy-box">
+            <h3>Delivery</h3>
+            <p>This is a digital software download. After purchase through the store checkout, the customer receives access to a ZIP package containing the local browser app, README, license, assets, and runtime files.</p>
+          </div>
+          <div class="policy-box">
+            <h3>Refunds</h3>
+            <p>If the file cannot be downloaded or the app does not run as described, contact support. Refund requests are reviewed case by case and handled according to applicable consumer law and the payment platform's policies.</p>
+          </div>
+          <div class="policy-box">
+            <h3>Privacy</h3>
+            <p>The app runs locally in the browser. Kveila Apps does not operate an account system for this product. Payments and checkout are handled by the store/payment provider.</p>
+          </div>
+          <div class="policy-box">
+            <h3>Support</h3>
+            <p>Email <a href="mailto:vidarthomassen3@gmail.com">vidarthomassen3@gmail.com</a> for support, licensing questions, or purchase questions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="notice">
+          Back up your existing Microsoft Flight Simulator 2024 controller profiles before importing exported XML files.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <h2>Compatibility Notes</h2>
+        <ul>
+          <li>Intended for Microsoft Flight Simulator 2024 on PC.</li>
+          <li>Tested against Sim Update 4 / 1.6.32.0.</li>
+          <li>The configurator UI has been tested on Windows 11 and macOS 26.</li>
+          <li>Xbox is not supported.</li>
+          <li>Future simulator updates may change how controller profiles behave.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p>This is an independent, unofficial tool. It is not affiliated with, endorsed by, sponsored by, or approved by Turtle Beach, Microsoft, Xbox Game Studios, or Asobo Studio. Product and company names are used only to identify compatibility.</p>
+      <p>Copyright 2026 Vidar Thomassen. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
