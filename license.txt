@@ -1,0 +1,69 @@
+Copyright (c) 2026 Vidar Thomassen
+
+All rights reserved.
+
+This software and its source code, including all files in the packaged
+VelocityOne FS2024 Configurator unless otherwise noted, are the exclusive
+property of the copyright holder.
+
+End-user license
+
+If you have purchased, downloaded, or otherwise received an authorized copy of
+the packaged VelocityOne FS2024 Configurator, you are granted a limited,
+non-exclusive, non-transferable license to use the unmodified software for your
+own personal or internal simulator setup.
+
+You may:
+
+1. Run the packaged configurator locally on your own computer.
+2. Use it to create, save, load, and export controller profile files for your
+   own Microsoft Flight Simulator 2024 installation.
+3. Make reasonable backup copies of your purchased or authorized download for
+   your own use.
+
+You may not, without prior written permission from the copyright holder:
+
+1. Redistribute, publish, share, sublicense, rent, lease, sell, or otherwise
+   provide the software or source code to another person or entity.
+2. Modify, adapt, translate, or create derivative works based on this software
+   or its source code.
+3. Remove, alter, or obscure any copyright, trademark, license, or other
+   proprietary notices.
+4. Sell, license, lease, rent, or otherwise commercially exploit this software
+   or any derivative works.
+5. Reverse engineer, decompile, or disassemble any compiled or packaged form of
+   the software, except where such restriction is prohibited by law.
+
+The source code may be made available for inspection, review, or audit. Source
+availability does not grant permission to use, copy, modify, redistribute, or
+commercially exploit the source code except as expressly allowed above.
+
+Unauthorized use of this software is strictly prohibited and may result in civil
+and/or criminal liability under applicable law.
+
+Third-party components and materials
+
+Third-party components and reference materials remain the property of their
+respective owners:
+
+- React and ReactDOM are redistributed in the package under the MIT License and
+  are copyright Meta Platforms, Inc. and contributors.
+- Microsoft Flight Simulator 2024 XML template files are used for
+  interoperability purposes only. All rights to those files remain with their
+  respective owners.
+- Turtle Beach VelocityOne Flight references and product names are used only to
+  identify compatibility. All rights remain with their respective owners.
+
+This software is an independent, unofficial tool. It is not affiliated with,
+endorsed by, sponsored by, or approved by Turtle Beach, Microsoft, Xbox Game
+Studios, or Asobo Studio.
+
+For licensing inquiries, including permission to use, modify, redistribute, or
+commercially license this software, contact: vidarthomassen3@gmail.com
+
+Warranty disclaimer
+
+No warranty of any kind is provided. The software is offered "as is" without
+any guarantee of fitness for a particular purpose. In no event shall the
+copyright holder be liable for any claim, damages, data loss, profile loss, or
+other liability arising from the use of or inability to use this software.
